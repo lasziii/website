@@ -181,7 +181,7 @@
       color: inherit;
     }
 
-    a::after {
+    .card a::after {
       content: "";
       position: absolute;
       width: 0;
@@ -195,6 +195,10 @@
     a:hover::after {
       width: 100%;
     }
+
+    .paper a:hover{
+      text-decoration: underline;
+    }
   </style>
 </head>
 
@@ -204,6 +208,7 @@
       <div class="paper">
         <div>toilet paper.</div>
         <img src="qr.png" class="qr-sticker">
+        <div><a href="https://is.gd/laszi">is.gd/laszi/</div>
       </div>
 
       <div class="card">
