@@ -5,13 +5,31 @@
 	<title>laszi's</title>
 	<meta name="viewport" content="width=device-width">
 	<style>
+    :root {
+      color-scheme: dark light;
+    }
+
 		html, body {
 			position: relative;
 			height: 100%;
 			margin: 0;
 			padding: 0;
       background-color: rgb(20,20,20);
+      color: rgb(255, 255, 255);
 		}
+
+    * {
+      -webkit-text-fill-color: inherit !important;
+      -webkit-background-clip: padding-box !important;
+      background-clip: padding-box !important;
+    }
+
+    @media (prefers-color-scheme: dark), (prefers-color-scheme: light) {
+    html, body {
+        background-color: rgb(20,20,20) !important;
+        color: rgb(255,255,255) !important;
+      }
+    } 
 
 		main {
 			position: relative;
