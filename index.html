@@ -1,46 +1,87 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>laszi's</title>
-    <meta name="viewport" content="width=device-width">
-    <style>
-        html, body {
-            position: relative;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
+	<meta charset="UTF-8">
+	<title>laszi's</title>
+	<meta name="viewport" content="width=device-width">
+	<style>
+		html, body {
+			position: relative;
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
 
-        main {
-            position: relative;
-            top: 40%;
-            transform: translateY(-50%);
-            text-align: center;
-        }
+		main {
+			position: relative;
+			top: 40%;
+			transform: translateY(-50%);
+			text-align: center;
+		}
 
-        h1 {
-            margin: 0;
-            display: inline;
-        }
+    .card {
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      display: inline-block;
+      padding: 1rem;
+      transition: transform 0.5s ease, background 0.5s ease;
+    }
 
-        a, a:visited {
-            color: inherit;
-            text-decoration: none;
-        }
+    .card:hover {
+      text-shadow: 3px 3px 3px rgba(199,199,199,0.5);
+      transform: scale(1.1) rotateZ(2deg);
+      background: linear-gradient(145deg, rgb(0,0,0), rgb(55,55,55));
+      animation: glowPulse 5s infinite;
+    }
 
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    @keyframes glowPulse {
+      0% {
+          box-shadow: 0 0 10px rgba(255,30,30,0.5), 0 0 20px rgba(255,0,0,0.3);
+      }
+      50% {
+          box-shadow: 0 0 20px rgba(255,30,30,0.9), 0 0 40px rgba(255,0,0,0.5);
+      }
+      100% {
+          box-shadow: 0 0 10px rgba(255,30,30,0.5), 0 0 20px rgba(255,0,0,0.3);
+      }
+    }
+ 
+		h1 {
+			margin: 0;
+			display: inline;
+		}
+
+		a {
+      position: relative;
+      text-decoration: none;
+      color: inherit
+    }
+
+    a::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      left: 0;
+      bottom: -2px;
+      background-color: #ccc;
+      transition: width 0.3s ease;
+    }
+
+    a:hover::after {
+      width: 100%;
+    }
+	</style>
 </head>
 <body>
-    <main>
-        <h1>Vegh Latsi</h1>
-        <br>
-        <a href="https://instagram.com/laszi_" title="instagram.com/laszi_">instagram.com/laszi_</a>
-        <br>
-        <a>no phone number</a>
-    </main>
+	<main>
+		<div class="card">
+			<h1>Vegh Latsi</h1>
+			<br>
+			<a href="https://instagram.com/laszi_" title="instagram.com/laszi_">instagram.com/laszi_</a>
+			<br>
+			<a href="tel:+0" title="+0">no phone number</a>
+		</div>
+	</main>
 </body>
 </html>
