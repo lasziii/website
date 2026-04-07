@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>laszi's</title>
-	<meta name="viewport" content="width=device-width">
-	<style>
+  <meta charset="UTF-8">
+  <title>laszi's</title>
+  <meta name="viewport" content="width=device-width">
+  <style>
     :root {
       color-scheme: dark light;
     }
 
-		html, body {
-			position: relative;
-			height: 100%;
-			margin: 0;
-			padding: 0;
+    html, body {
+      position: relative;
+      height: 100%;
+      margin: 0;
+      padding: 0;
       background-color: rgb(20,20,20);
-      color: rgb(255, 255, 255);
-		}
+      color: rgb(255,255,255);
+    }
 
     * {
       -webkit-text-fill-color: inherit !important;
@@ -25,83 +25,127 @@
     }
 
     @media (prefers-color-scheme: dark), (prefers-color-scheme: light) {
-    html, body {
+      html, body {
         background-color: rgb(20,20,20) !important;
         color: rgb(255,255,255) !important;
       }
-    } 
+    }
 
-		main {
-			position: relative;
-			top: 40%;
-			transform: translateY(-50%);
-			text-align: center;
-		}
+    main {
+      position: relative;
+      top: 40%;
+      transform: translateY(-50%);
+      text-align: center;
+    }
 
     .card-wrapper {
-  position: relative;
-  display: inline-block;
-}
+      position: relative;
+      display: inline-block;
+    }
 
     .card {
-  position: relative;
-  z-index: 10;
-  background: rgb(20,20,20);
-  border-radius: 8px;
-  padding: 1rem;
-  transition: transform 0.5s ease, background 0.5s ease;
-}
+      position: relative;
+      z-index: 10;
+      background: rgb(20,20,20);
+      border-radius: 8px;
+      padding: 1rem;
+      transition: transform 0.5s ease, background 0.5s ease;
+    }
 
     .paper {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 40px;
-  width: 150px;
-  padding: 12px;
-  background: rgba(255, 240, 206, 0.802);
-  color: rgb(255, 255, 255);
-  font-weight: bold;
-  border-radius: 6px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-  opacity: 0;
-  z-index: 1;
-  transition: top 0.5s ease, opacity 0.5s ease;
-}
+      text-shadow: 2px 2px 3px rgba(0,0,0,0.4);
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 40px;
+      width: 150px;
+      padding: 12px;
+
+      background:
+        repeating-linear-gradient(
+          25deg,
+          rgba(255,255,255,0.3) 0px,
+          rgba(255,255,255,0.3) 3px,
+          rgba(255,255,255,0.04) 4px,
+          rgba(255,255,255,0.04) 7px
+        ),
+        rgba(255,240,206,0.9);
+
+      background-blend-mode: overlay, overlay, normal;
+
+      color: rgb(255,255,255);
+      font-weight: bold;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.55);
+      opacity: 0;
+      z-index: 1;
+      transition: none;
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 40px;
+      overflow: hidden;
+    }
+
+    .card-wrapper:hover .paper:not(.falling) {
+      pointer-events: auto;
+      top: 80%;
+      opacity: 1;
+      transition: top 0.5s ease, height 0.5s ease, opacity 0.3s ease;
+    }
+
+    .card-wrapper:hover .paper:not(.falling):hover {
+      height: 130px;
+    }
+
+    .paper.falling {
+      top: 130vh !important;
+      opacity: 1 !important;
+      height: 130px !important;
+      pointer-events: none;
+    }
 
     .card-wrapper:hover .card {
-  transform: scale(1.1) rotateZ(2deg);
-  background: linear-gradient(145deg, rgb(0,0,0), rgb(55,55,55));
-  animation: glowPulse 5s infinite;
-}
+      transform: scale(1.1) rotateZ(2deg);
+      background: linear-gradient(145deg, rgb(0,0,0), rgb(75,75,75));
+      animation: glowPulse 5s infinite;
+    }
 
     .card-wrapper:hover .paper {
-  top: 97%;
-  opacity: 1;
-}
+      pointer-events: auto;
+      top: 97%;
+      opacity: 1;
+      transition: top 0.5s ease, height 0.5s ease, opacity 0.3s ease;
+    }
+
+    .card-wrapper:hover .paper:hover {
+      height: 150px;
+    }
 
     @keyframes glowPulse {
       0% {
-          box-shadow: 0 0 10px rgba(255,30,30,0.3), 0 0 20px rgba(255,0,0,0.1);
+        box-shadow: 0 0 10px rgba(255,30,30,0.3), 0 0 20px rgba(255,0,0,0.1);
       }
       50% {
-          box-shadow: 0 0 20px rgba(255,30,30,0.9), 0 0 40px rgba(255,0,0,0.5);
+        box-shadow: 0 0 20px rgba(255,30,30,0.9), 0 0 40px rgba(255,0,0,0.5);
       }
       100% {
-          box-shadow: 0 0 10px rgba(255,30,30,0.3), 0 0 20px rgba(255,0,0,0.1);
+        box-shadow: 0 0 10px rgba(255,30,30,0.3), 0 0 20px rgba(255,0,0,0.1);
       }
     }
- 
-		h1 {
-			margin: 0;
-			display: inline;
-		}
 
-		a {
+    h1 {
+      margin: 0;
+      display: inline;
+    }
+
+    a {
       position: relative;
       text-decoration: none;
-      color: inherit
+      color: inherit;
     }
 
     a::after {
@@ -118,21 +162,53 @@
     a:hover::after {
       width: 100%;
     }
-	</style>
+  </style>
 </head>
-<body>
-	<main>
-		<div class="card-wrapper">
-    <div class="paper">Welcome to my website!</div>
 
-    <div class="card">
-        <h1>laszi_</h1> 
+<body>
+  <main>
+    <div class="card-wrapper">
+      <div class="paper">
+        <div>toilet paper.</div>
+        <div>DON'T SCROLL!</div>
+      </div>
+
+      <div class="card">
+        <h1>Vegh Laszi</h1>
         <br>
         <a href="https://instagram.com/laszi_">instagram.com/laszi_</a>
         <br>
         <a href="https://www.snapchat.com/@lasziiii">snapchat.com/@lasziiii</a>
+      </div>
     </div>
-</div>
-	</main>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const paper = document.querySelector(".paper");
+
+      paper.addEventListener("wheel", () => {
+        const visible = getComputedStyle(paper).opacity === "1";
+
+        if (visible && !paper.classList.contains("falling")) {
+          paper.style.transition = "top 10s cubic-bezier(0.22, 1, 0.36, 1)";
+          paper.classList.add("falling");
+
+          setTimeout(() => {
+            paper.classList.remove("falling");
+
+            paper.style.transition = "none";
+            paper.style.removeProperty("top");
+            paper.style.removeProperty("opacity");
+            paper.style.removeProperty("height");
+
+            setTimeout(() => {
+              paper.style.transition = "";
+            }, 50);
+          }, 1200);
+        }
+      });
+    });
+  </script>
 </body>
 </html>
