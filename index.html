@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>laszi's</title>
   <meta name="viewport" content="width=device-width">
+
   <style>
     :root {
       color-scheme: dark light;
@@ -14,7 +15,16 @@
       margin: 0;
       padding: 0;
       background-color: rgb(17, 17, 17);
-      color: rgb(255,255,255);
+      color: rgb(255, 255, 255);
+    }
+
+    body {
+      opacity: 0;
+      animation: fadeIn 5s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
     }
 
     * {
@@ -38,11 +48,15 @@
     .card {
       position: relative;
       z-index: 10;
-      background: rgb(17,17,17);
+      background: rgb(17, 17, 17);
       border-radius: 8px;
       padding: 30px 30px;
       transition: border 1s, box-shadow 0.5s;
       border: 2px solid transparent;
+    }
+
+    .card-wrapper:active {
+      transform: scale(0.98);
     }
 
     .card-wrapper:hover .card {
@@ -57,9 +71,9 @@
       height: 40px;
       width: 150px;
       padding: 12px;
-      color: rgb(255,255,255);
+      color: rgb(255, 255, 255);
       border-radius: 6px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.55);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.55);
       opacity: 0;
       z-index: 1;
       display: flex;
@@ -73,12 +87,12 @@
       background:
         repeating-linear-gradient(
           25deg,
-          rgba(255,255,255,0.3) 0px,
-          rgba(255,255,255,0.3) 3px,
-          rgba(255,255,255,0.04) 4px,
-          rgba(255,255,255,0.04) 7px
+          rgba(255, 255, 255, 0.3) 0px,
+          rgba(255, 255, 255, 0.3) 3px,
+          rgba(255, 255, 255, 0.04) 4px,
+          rgba(255, 255, 255, 0.04) 7px
         ),
-        rgba(255,240,206,0.9);
+        rgba(255, 240, 206, 0.9);
     }
 
     .card-wrapper:hover .paper:not(.falling) {
@@ -108,27 +122,33 @@
       background-image:
         repeating-linear-gradient(
           25deg,
-          rgba(255,255,255,0.35) 0px,
-          rgba(255,255,255,0.35) 3px,
-          rgba(255,255,255,0.08) 4px,
-          rgba(255,255,255,0.08) 7px
+          rgba(255, 255, 255, 0.35) 0px,
+          rgba(255, 255, 255, 0.35) 3px,
+          rgba(255, 255, 255, 0.08) 4px,
+          rgba(255, 255, 255, 0.08) 7px
         );
+
       background-blend-mode: overlay;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.45);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.45);
+      transition: transform 0.7s;
     }
 
-    .paper div{
-      text-shadow: 2px 2px 2px rgba(0,0,0,.8);
+    .qr-sticker:hover {
+      transform: scale(1.2);
+    }
+
+    .paper div {
+      text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
     }
 
     h1 {
       margin: 0;
       display: inline;
       cursor: default;
+      transition: letter-spacing 0.5s;
     }
 
     a {
-      color: white;
       position: relative;
       text-decoration: none;
       color: inherit;
@@ -141,53 +161,96 @@
       text-decoration: none;
     }
 
-a[href*="mailto:laszi.public@gmail.com"]:hover {
-  color: #00d9ff;
-  text-shadow: 1px 1px 1.2px rgb(0, 255, 4);
-}
+    a[href*="mailto:laszi.public@gmail.com"]:hover {
+      text-decoration: underline;
+    }
 
-a[href*="instagram.com"]:hover {
-  color: #833AB4;
-  text-shadow: 1px 1px 1.2px rgb(255, 174, 0);
-}
+    a[href*="instagram.com"]:hover {
+      color: #833AB4;
+      text-shadow: 1px 1px 1.2px rgb(255, 174, 0);
+    }
 
-a[href*="ngl.link"]:hover {
-  color: #ffa600;
-  text-shadow: 1px 1px 1.2px rgb(255, 0, 208);
-}
+    a[href*="ngl.link"]:hover {
+      color: #ffa600;
+      text-shadow: 1px 1px 1.2px rgb(255, 0, 208);
+    }
 
-a[href*="snapchat.com"]:hover {
-  color: #fffb00;
-  text-shadow: 1px 1px 1.2px rgb(255, 255, 255);
-}
+    a[href*="snapchat.com"]:hover {
+      color: #fffb00;
+      text-shadow: 1px 1px 1.2px rgb(255, 255, 255);
+    }
 
-.qr-sticker {
-  transition: transform 0.7s;
-}
+    a[href*="is.gd"] {
+      display: inline-block;
+      transition: transform 0.7s;
+    }
 
-.qr-sticker:hover {
-  transform: scale(1.2);
-}
+    a[href*="is.gd"]:hover {
+      transform: rotate(-5deg);
+    }
+
+    .icon {
+      width: 16px;
+      height: 16px;
+      vertical-align: middle;
+      margin-right: 2px;
+      border-radius: 4px;
+    }
+
+    .card .icon {
+      opacity: 0;
+      transform: scale(0.5);
+      transition: opacity 0.3s, transform 0.3s;
+      transition-delay: 0.5s;
+    }
+
+    .card-wrapper:hover .icon {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .card-wrapper:hover h1 {
+      letter-spacing: 1px;
+    }
   </style>
 </head>
 
 <body>
   <main>
     <div class="card-wrapper">
+
       <div class="paper">
-        <div>toilet paper.</div>
+        <div>
+          <a href="https://is.gd/laszi">toilet paper.</a>
+        </div>
+
         <img src="qr.png" class="qr-sticker">
-        <div><a href="https://snapchat.com/@lasziiii">snapchat.com/@lasziiii</a></div>
-        <div><a href="https://ngl.link/@laszi">ngl.link/@laszi</a></div>
+
+        <div>
+          <img src="snap.png" class="icon">
+          <a href="https://snapchat.com/@lasziiii">snapchat/@lasziiii</a>
+        </div>
+
+        <div>
+          <img src="ngl.png" class="icon">
+          <a href="https://ngl.link/@laszi">ngl/@laszi</a>
+        </div>
       </div>
 
       <div class="card">
         <h1>Vegh Laszi</h1>
         <br>
-        <a href="mailto:laszi.public@gmail.com">laszi.public@gmail.com</a>
+        <a href="mailto:laszi.public@gmail.com">
+          <img src="gmail.png" class="icon">
+          laszi.public@gmail.com
+        </a>
         <br>
-        <a href="https://www.instagram.com/laszi_">instagram.com/laszi_</a>
+        <a href="https://www.instagram.com/laszi_">
+          <img src="insta.png" class="icon">
+          instagram/laszi_
+        </a>
       </div>
+
     </div>
   </main>
 
