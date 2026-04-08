@@ -43,6 +43,7 @@
     }
 
     .card-wrapper {
+      z-index: 5;
       position: relative;
       display: inline-block;
     }
@@ -226,15 +227,24 @@
   top: 75%;
   opacity: 1;
 }
+
+.p{
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: -100;
+}
+
+.card-wrapper.dragging ~ .p, .card-wrapper.dragging + .p { 
+  opacity: 1;
+}
+
   </style>
 </head>
 
 <body>
   <main>
 
-    <a href="https://www.is.gd/laszi" style="position: fixed; top: 40%; left: 50%; transform: translateX(-50%); color: #ffffff; z-index: 0;">
-  www.is.gd/laszi
-</a>
+    
     <div class="card-wrapper">
 
       <div class="paper">
@@ -266,6 +276,10 @@
       </div>
 
     </div>
+
+    <p style="position: fixed; top: -7%; left: 50%; transform: translateX(-50%); color: #ffffff; z-index: 0;" class="p">
+  is.gd/laszi<br>cutt.ly/laszi<br>tiny.cc/laszi<br>urli.info/laszi<br>tinyurl.com/lasziiii<br>shorter.me/laszi<br>linktr.ee/laszi<br>bio.link/laszi<br>bit.ly/laszi
+    </p>
   </main>
 
   <script>
@@ -321,7 +335,6 @@ cardWrapper.addEventListener("mousedown", (e) => {
 
   cardWrapper.style.transition = "none";
 
-  // Add class to simulate hover
   cardWrapper.classList.add("dragging");
 });
 
@@ -332,7 +345,7 @@ document.addEventListener("mousemove", (e) => {
   let dy = e.clientY - startY;
 
   const distance = Math.sqrt(dx * dx + dy * dy);
-  const resistance = 1 / (1 + distance / 200);
+  const resistance = 1 / (1 + distance / 400);
 
   dx *= resistance;
   dy *= resistance;
@@ -346,13 +359,11 @@ document.addEventListener("mouseup", () => {
   if (!isDragging) return;
   isDragging = false;
 
-  // Snap back smoothly
   cardWrapper.style.transition =
     "left 0.5s cubic-bezier(0.22, 1, 0.36, 1), top 0.5s cubic-bezier(0.22, 1, 0.36, 1)";
   cardWrapper.style.left = "0px";
   cardWrapper.style.top = "0px";
 
-  // Remove dragging class after snap
   setTimeout(() => {
     cardWrapper.style.transition = "";
     cardWrapper.classList.remove("dragging");
