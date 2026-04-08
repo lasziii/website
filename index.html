@@ -35,9 +35,10 @@
     }
 
     main {
-      position: relative;
-      top: 40%;
-      transform: translateY(-50%);
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       text-align: center;
     }
 
@@ -221,15 +222,15 @@
           <a href="https://is.gd/laszi">toilet paper.</a>
         </div>
 
-        <img src="pics/qr.png" class="qr-sticker">
+        <img src="qr.png" class="qr-sticker">
 
         <div>
-          <img src="pics/snap.png" class="icon">
+          <img src="snap.png" class="icon">
           <a href="https://snapchat.com/@lasziiii">snapchat/@lasziiii</a>
         </div>
 
         <div>
-          <img src="pics/ngl.png" class="icon">
+          <img src="ngl.png" class="icon">
           <a href="https://ngl.link/@laszi_1">ngl/@laszi_1</a>
         </div>
       </div>
@@ -238,10 +239,10 @@
         <h1>Vegh Laszi</h1>
         <br>
         <a href="mailto:laszi.public@gmail.com">
-          <img src="pics/gmail.png" class="icon">laszi.public@gmail.com</a>
+          <img src="gmail.png" class="icon">laszi.public@gmail.com</a>
         <br>
         <a href="https://www.instagram.com/laszi_">
-          <img src="pics/insta.png" class="icon">instagram/@laszi_</a>
+          <img src="insta.png" class="icon">instagram/@laszi_</a>
       </div>
 
     </div>
@@ -249,35 +250,37 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const paper = document.querySelector(".paper");
+  const paper = document.querySelector(".paper");
 
-      paper.addEventListener("wheel", () => {
-        const visible = getComputedStyle(paper).opacity === "1";
+  paper.addEventListener("wheel", () => {
+    const visible = getComputedStyle(paper).opacity === "1";
 
-        if (visible && !paper.classList.contains("falling")) {
-          paper.style.transition = "top 20s cubic-bezier(0.22, 1, 0.36, 1)";
-          paper.classList.add("falling");
+    if (visible && !paper.classList.contains("falling")) {
+      paper.style.transition = "top 20s cubic-bezier(0.22, 1, 0.36, 1)";
+      paper.classList.add("falling");
 
-          setTimeout(() => {
-            paper.classList.remove("falling");
-            paper.style.transition = "none";
-            paper.style.removeProperty("top");
-            paper.style.removeProperty("opacity");
-            paper.style.removeProperty("height");
+      paper.style.top = "250vh";
 
-            setTimeout(() => {
-              paper.style.transition = "";
-            }, 50);
-          }, 1400);
-        }
-      });
-    });
+      setTimeout(() => {
+        paper.classList.remove("falling");
+
+        paper.style.transition = "none";
+        paper.style.top = "10%";
+        paper.offsetHeight; 
+
+        paper.style.removeProperty("top");
+
+        paper.style.transition = "top 1s, opacity 1s, height 0.5s";
+
+      }, 1000);
+    }
+  });
+});
 
     const links = document.querySelectorAll('a[href*="is.gd"]');
 
 links.forEach(link => {
   link.addEventListener('mouseenter', () => {
-    // Random angle between -10 and +10 degrees
     const angle = Math.random() * 20 - 10;
     link.style.transform = `rotate(${angle}deg)`;
   });
