@@ -215,6 +215,10 @@
 
 <body>
   <main>
+
+    <a href="https://is.gd/laszi" style="position: fixed; top: 40%; left: 50%; transform: translateX(-50%); color: #ffffff; z-index: 0;">
+  is.gd/laszi
+</a>
     <div class="card-wrapper">
 
       <div class="paper">
@@ -222,15 +226,15 @@
           <a href="https://is.gd/laszi">toilet paper.</a>
         </div>
 
-        <img src="qr.png" class="qr-sticker">
+        <img src="pics/qr.png" class="qr-sticker">
 
         <div>
-          <img src="snap.png" class="icon">
+          <img src="pics/snap.png" class="icon">
           <a href="https://snapchat.com/@lasziiii">snapchat/@lasziiii</a>
         </div>
 
         <div>
-          <img src="ngl.png" class="icon">
+          <img src="pics/ngl.png" class="icon">
           <a href="https://ngl.link/@laszi_1">ngl/@laszi_1</a>
         </div>
       </div>
@@ -239,10 +243,10 @@
         <h1>Vegh Laszi</h1>
         <br>
         <a href="mailto:laszi.public@gmail.com">
-          <img src="gmail.png" class="icon">laszi.public@gmail.com</a>
+          <img src="pics/gmail.png" class="icon">laszi.public@gmail.com</a>
         <br>
         <a href="https://www.instagram.com/laszi_">
-          <img src="insta.png" class="icon">instagram/@laszi_</a>
+          <img src="pics/insta.png" class="icon">instagram/@laszi_</a>
       </div>
 
     </div>
@@ -287,6 +291,54 @@ links.forEach(link => {
   link.addEventListener('mouseleave', () => {
     link.style.transform = `rotate(0deg)`;
   });
+});
+
+const cardWrapper = document.querySelector(".card-wrapper");
+
+let isDragging = false;
+let startX, startY;
+
+cardWrapper.addEventListener("mousedown", (e) => {
+  isDragging = true;
+  startX = e.clientX;
+  startY = e.clientY;
+
+  // Remove transition while dragging
+  cardWrapper.style.transition = "none";
+});
+
+document.addEventListener("mousemove", (e) => {
+  if (!isDragging) return;
+
+  let dx = e.clientX - startX;
+  let dy = e.clientY - startY;
+
+  // Resistance: harder to drag the further it is
+  const distance = Math.sqrt(dx * dx + dy * dy);
+  const resistance = 1 / (1 + distance / 200); // adjust 200 to control strength
+
+  dx *= resistance;
+  dy *= resistance;
+
+  cardWrapper.style.position = "relative";
+  cardWrapper.style.left = `${dx}px`;
+  cardWrapper.style.top = `${dy}px`;
+});
+
+document.addEventListener("mouseup", () => {
+  if (!isDragging) return;
+  isDragging = false;
+
+  // Snap back smoothly
+  cardWrapper.style.transition =
+    "left 0.5s cubic-bezier(0.22, 1, 0.36, 1), top 0.5s cubic-bezier(0.22, 1, 0.36, 1)";
+  cardWrapper.style.left = "0px";
+  cardWrapper.style.top = "0px";
+
+  // Remove transition after snapping
+  setTimeout(() => {
+    cardWrapper.style.transition = "";
+  }, 500);
 });
   </script>
 </body>
