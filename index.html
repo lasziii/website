@@ -182,11 +182,7 @@
 
     a[href*="is.gd"] {
       display: inline-block;
-      transition: transform 0.7s;
-    }
-
-    a[href*="is.gd"]:hover {
-      transform: rotate(-5deg);
+      transition: transform 0.2s;
     }
 
     .icon {
@@ -247,7 +243,7 @@
         <br>
         <a href="https://www.instagram.com/laszi_">
           <img src="insta.png" class="icon">
-          instagram/laszi_
+          instagram/@laszi_
         </a>
       </div>
 
@@ -279,6 +275,19 @@
         }
       });
     });
+
+    const links = document.querySelectorAll('a[href*="is.gd"]');
+
+links.forEach(link => {
+  link.addEventListener('mouseenter', () => {
+    // Random angle between -10 and +10 degrees
+    const angle = Math.random() * 20 - 10;
+    link.style.transform = `rotate(${angle}deg)`;
+  });
+  link.addEventListener('mouseleave', () => {
+    link.style.transform = `rotate(0deg)`;
+  });
+});
   </script>
 </body>
 </html>
