@@ -202,6 +202,12 @@
       transition-delay: 0.5s;
     }
 
+    .card-wrapper.dragging .icon {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
     .card-wrapper:hover .icon {
       opacity: 1;
       transform: scale(1);
@@ -210,6 +216,16 @@
     .card-wrapper:hover h1 {
       letter-spacing: 1px;
     }
+
+    .card-wrapper.dragging .card {
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+.card-wrapper.dragging .paper:not(.falling) {
+  pointer-events: auto;
+  top: 75%;
+  opacity: 1;
+}
   </style>
 </head>
 
@@ -303,8 +319,10 @@ cardWrapper.addEventListener("mousedown", (e) => {
   startX = e.clientX;
   startY = e.clientY;
 
-  // Remove transition while dragging
   cardWrapper.style.transition = "none";
+
+  // Add class to simulate hover
+  cardWrapper.classList.add("dragging");
 });
 
 document.addEventListener("mousemove", (e) => {
@@ -313,9 +331,8 @@ document.addEventListener("mousemove", (e) => {
   let dx = e.clientX - startX;
   let dy = e.clientY - startY;
 
-  // Resistance: harder to drag the further it is
   const distance = Math.sqrt(dx * dx + dy * dy);
-  const resistance = 1 / (1 + distance / 200); // adjust 200 to control strength
+  const resistance = 1 / (1 + distance / 200);
 
   dx *= resistance;
   dy *= resistance;
@@ -335,9 +352,10 @@ document.addEventListener("mouseup", () => {
   cardWrapper.style.left = "0px";
   cardWrapper.style.top = "0px";
 
-  // Remove transition after snapping
+  // Remove dragging class after snap
   setTimeout(() => {
     cardWrapper.style.transition = "";
+    cardWrapper.classList.remove("dragging");
   }, 500);
 });
   </script>
