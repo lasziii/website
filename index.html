@@ -12,30 +12,30 @@
     html, body { height: 100%; margin: 0; padding: 0; background-color: rgb(17, 17, 17); color: rgb(255, 255, 255); user-select: none; }
     body { opacity: 0; animation: fadeIn 5s forwards; }
     @keyframes fadeIn { to { opacity: 1; } }
-    * { -webkit-text-fill-color: inherit !important; -webkit-background-clip: padding-box !important; background-clip: padding-box !important; }
 
     main { position: fixed; top: 40%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
     .card-wrapper { z-index: 5; position: relative; display: inline-block; }
     .card { position: relative; z-index: 10; background: rgb(17, 17, 17); border-radius: 8px; padding: 30px; transition: border 1s, box-shadow 0.5s; border: 2px solid transparent; }
     .card-wrapper:active { transform: scale(0.98); }
     .card-wrapper:hover .card { box-shadow: 0 0 30px rgba(0,0,0,0.8); }
-    .paper { position: absolute; top: 0; left: 50%; transform: translateX(-50%); height: 40px; width: 150px; padding: 12px; color: #fff; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.55); opacity: 0; z-index: 1; display: flex; flex-direction: column-reverse; justify-content: flex-start; align-items: center; gap: 5px; overflow: hidden; transition: top 1s, opacity 1s, height 0.5s;
+    .paper { position: absolute; top: 0; left: 50%; transform: translateX(-50%); height: 40px; width: 150px; padding: 12px; color: #fff; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.55); opacity: 0; z-index: 1; display: flex; flex-direction: column-reverse; justify-content: flex-start; align-items: center; gap: 3px; overflow: hidden; transition: top 1s, opacity 1s, height 0.5s;
       background: repeating-linear-gradient(25deg, rgba(255,255,255,0.3) 0px, rgba(255,255,255,0.3) 3px, rgba(255,255,255,0.04) 4px, rgba(255,255,255,0.04) 7px), rgba(255,240,206,0.9); }
     .card-wrapper:hover .paper:not(.falling) { pointer-events: auto; top: 75%; opacity: 1; }
-    .card-wrapper:hover .paper:not(.falling):hover { height: 250px; }
-    .paper.falling { top: 250vh !important; opacity: 1 !important; height: 250px !important; pointer-events: none; }
+    .card-wrapper:hover .paper:not(.falling):hover { height: 260px; }
+    .paper.falling { top: 260vh !important; opacity: 1 !important; height: 260px !important; pointer-events: none; }
 
     .qr-sticker { z-index: 10; width: 100px; height: 100px; padding: 10px; border-radius: 10px; background-color: white; background-image: repeating-linear-gradient(25deg, rgba(255,255,255,0.35) 0px, rgba(255,255,255,0.35) 3px, rgba(255,255,255,0.08) 4px, rgba(255,255,255,0.08) 7px); background-blend-mode: overlay; box-shadow: 0 4px 10px rgba(0,0,0,0.45); transition: transform 0.7s; }
     .qr-sticker:hover { transform: scale(1.2); }
     .paper div { text-shadow: 2px 2px 2px rgba(0,0,0,0.8); }
     h1 { margin: 0; display: inline; cursor: default; transition: letter-spacing 0.5s; }
-    a { position: relative; text-decoration: none; color: inherit; cursor: default; text-shadow: 2px 2px 1.2px rgb(0,0,0); transition: color 0.5s, text-shadow 0.5s; }
+    a, span { position: relative; text-decoration: none; color: inherit; cursor: default; text-shadow: 2px 2px 1.2px rgb(0,0,0); transition: color 0.5s, text-shadow 0.5s; }
     .paper a:hover { text-decoration: none; }
     a[href*="mailto:laszi.public@gmail.com"]:hover { text-decoration: underline; }
+    a[href*="reddit.com"]:hover { color: #ff0000; text-shadow: 0px 0px 1.2px rgb(192, 192, 192); }
     a[href*="instagram.com"]:hover { color: #833AB4; text-shadow: 1px 1px 1.2px rgb(255,174,0); }
     a[href*="ngl.link"]:hover { color: #ffa600; text-shadow: 1px 1px 1.2px rgb(255,0,208); }
-    a[href*="snapchat.com"]:hover { color: #fffb00; text-shadow: 1px 1px 1.2px rgb(192, 192, 192); }
-    #discordCopy:hover { color: #0025dd; text-shadow: 1px 1px 1.2px rgb(166, 33, 206); transition: color 0.5s, text-shadow 0.5s;}
+    a[href*="snapchat.com"]:hover { color: #fffb00; text-shadow: 2px 2px 1.2px rgb(192, 192, 192); }
+    #discordCopy:hover { color: #0025dd; text-shadow: 0px 0px 1.2px rgb(192, 192, 192); transition: color 0.5s, text-shadow 0.5s;}
     a[href*="is.gd"] { display: inline-block; transition: transform 0.2s; }
     .icon { width: 16px; height: 16px; vertical-align: middle; margin-right: 2px; border-radius: 4px; }
     .card .icon { opacity: 0; transform: scale(0.5); transition: opacity 0.3s, transform 0.3s; transition-delay: 0.5s; }
@@ -56,6 +56,10 @@
 #list li::before { content: "•"; display: inline-block; width: 1em; margin-right: 5px; color: #ffffff; opacity: 1; transform: translateY(0); transition: none; }
 #list li.show::before { opacity: 1; transform: translateY(0); }
 #names-section:hover { opacity: 1; }
+
+.paper a:hover, #discordCopy:hover {
+  text-shadow: 2px 2px 1.2px rgb(0,0,0); /* same as default */
+}
   </style>
 </head>
 
@@ -68,6 +72,7 @@
       <div><img src="pics/dc.png" class="icon"><span id="discordCopy" style="cursor: pointer;">discord/@laszi_</span></div>
       <div><img src="pics/snap.png" class="icon"><a href="https://www.snapchat.com/@lasziiii">snapchat/@lasziiii</a></div>
       <div><img src="pics/ngl.png" class="icon"><a href="https://www.ngl.link/@laszi_1">ngl/@laszi_1</a></div>
+      <div><img src="pics/reddit.png" class="icon"><a href="https://www.reddit.com/u/laszi_">reddit/u/laszi_</a></div>
     </div>
     <div class="card">
       <h1>Vegh Laszi</h1><br>
