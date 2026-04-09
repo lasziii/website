@@ -19,13 +19,13 @@
     .card { position: relative; z-index: 10; background: rgb(17, 17, 17); border-radius: 8px; padding: 30px; transition: border 1s, box-shadow 0.5s; border: 2px solid transparent; }
     .card-wrapper:active { transform: scale(0.98); }
     .card-wrapper:hover .card { box-shadow: 0 0 30px rgba(0,0,0,0.8); }
-    .paper { position: absolute; top: 0; left: 50%; transform: translateX(-50%); height: 40px; width: 150px; padding: 12px; color: #fff; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.55); opacity: 0; z-index: 1; display: flex; flex-direction: column-reverse; justify-content: flex-start; align-items: center; gap: 15px; overflow: hidden; transition: top 1s, opacity 1s, height 0.5s;
+    .paper { position: absolute; top: 0; left: 50%; transform: translateX(-50%); height: 40px; width: 150px; padding: 12px; color: #fff; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.55); opacity: 0; z-index: 1; display: flex; flex-direction: column-reverse; justify-content: flex-start; align-items: center; gap: 5px; overflow: hidden; transition: top 1s, opacity 1s, height 0.5s;
       background: repeating-linear-gradient(25deg, rgba(255,255,255,0.3) 0px, rgba(255,255,255,0.3) 3px, rgba(255,255,255,0.04) 4px, rgba(255,255,255,0.04) 7px), rgba(255,240,206,0.9); }
     .card-wrapper:hover .paper:not(.falling) { pointer-events: auto; top: 75%; opacity: 1; }
     .card-wrapper:hover .paper:not(.falling):hover { height: 250px; }
     .paper.falling { top: 250vh !important; opacity: 1 !important; height: 250px !important; pointer-events: none; }
 
-    .qr-sticker { width: 100px; height: 100px; padding: 10px; border-radius: 10px; background-color: white; background-image: repeating-linear-gradient(25deg, rgba(255,255,255,0.35) 0px, rgba(255,255,255,0.35) 3px, rgba(255,255,255,0.08) 4px, rgba(255,255,255,0.08) 7px); background-blend-mode: overlay; box-shadow: 0 4px 10px rgba(0,0,0,0.45); transition: transform 0.7s; }
+    .qr-sticker { z-index: 10; width: 100px; height: 100px; padding: 10px; border-radius: 10px; background-color: white; background-image: repeating-linear-gradient(25deg, rgba(255,255,255,0.35) 0px, rgba(255,255,255,0.35) 3px, rgba(255,255,255,0.08) 4px, rgba(255,255,255,0.08) 7px); background-blend-mode: overlay; box-shadow: 0 4px 10px rgba(0,0,0,0.45); transition: transform 0.7s; }
     .qr-sticker:hover { transform: scale(1.2); }
     .paper div { text-shadow: 2px 2px 2px rgba(0,0,0,0.8); }
     h1 { margin: 0; display: inline; cursor: default; transition: letter-spacing 0.5s; }
@@ -34,7 +34,8 @@
     a[href*="mailto:laszi.public@gmail.com"]:hover { text-decoration: underline; }
     a[href*="instagram.com"]:hover { color: #833AB4; text-shadow: 1px 1px 1.2px rgb(255,174,0); }
     a[href*="ngl.link"]:hover { color: #ffa600; text-shadow: 1px 1px 1.2px rgb(255,0,208); }
-    a[href*="snapchat.com"]:hover { color: #fffb00; text-shadow: 1px 1px 1.2px rgb(255,255,255); }
+    a[href*="snapchat.com"]:hover { color: #fffb00; text-shadow: 1px 1px 1.2px rgb(192, 192, 192); }
+    #discordCopy:hover { color: #0025dd; text-shadow: 1px 1px 1.2px rgb(166, 33, 206); transition: color 0.5s, text-shadow 0.5s;}
     a[href*="is.gd"] { display: inline-block; transition: transform 0.2s; }
     .icon { width: 16px; height: 16px; vertical-align: middle; margin-right: 2px; border-radius: 4px; }
     .card .icon { opacity: 0; transform: scale(0.5); transition: opacity 0.3s, transform 0.3s; transition-delay: 0.5s; }
@@ -46,12 +47,15 @@
     .p{ opacity: 0; transition: opacity 0.2s; z-index: -100; }
     .card-wrapper.dragging ~ .p, .card-wrapper.dragging + .p { opacity: 1; }
 
-  #names-section { text-align: center; position: fixed; right: 280%; bottom:  200%;}
+  #names-section { text-align: center; position: fixed; right: 280%; bottom:  200%; opacity: 0; transition: opacity 1s; border: 1px solid black; border-radius: 6px; padding: 10px;}
   #nameInput { margin-top: 20px; padding: 5px 10px; border-radius: 4px; border: none; }
   #saveBtn {margin-top: 20px; padding: 5px 10px; border-radius: 4px; border: none; cursor: pointer; background-color: #ffcc00; color: #000; }
-  #list { position: absolute; margin-top: 10px; list-style: none; padding: 0; max-height: 300px; overflow-y: auto; }
-  #list li { opacity: 0; transform: translateY(-10px); transition: opacity 0.5s, transform 0.5s; margin: 3px 0; transition: transform 0.3s, opacity 0.3s; text-align: left;}
-  #list li.show { opacity: 1; transform: translateY(0); }
+  #list { position: absolute; left: 0px; margin-top: 20px; list-style: none; padding: 10px; max-height: 300px; overflow-y: auto; border: 1px solid black; border-radius: 6px; }
+#list li { opacity: 0; transform: translateY(-10px); transition: transform 0.3s, opacity 0.3s; margin: 3px 0; text-align: left; display: block; }
+#list li.show { opacity: 1; transform: translateY(0); }
+#list li::before { content: "•"; display: inline-block; width: 1em; margin-right: 5px; color: #ffffff; opacity: 1; transform: translateY(0); transition: none; }
+#list li.show::before { opacity: 1; transform: translateY(0); }
+#names-section:hover { opacity: 1; }
   </style>
 </head>
 
@@ -61,6 +65,7 @@
     <div class="paper">
       <div><a href="https://www.is.gd/laszi">toilet paper.</a></div>
       <img src="pics/qr.png" class="qr-sticker">
+      <div><img src="pics/dc.png" class="icon"><span id="discordCopy" style="cursor: pointer;">discord/@laszi_</span></div>
       <div><img src="pics/snap.png" class="icon"><a href="https://www.snapchat.com/@lasziiii">snapchat/@lasziiii</a></div>
       <div><img src="pics/ngl.png" class="icon"><a href="https://www.ngl.link/@laszi_1">ngl/@laszi_1</a></div>
     </div>
@@ -75,11 +80,10 @@
 
   <!-- Names input and list below card -->
   <div id="names-section">
-    <input id="searchInput" placeholder="Search names" style="margin-top:10px;">
-    <input id="nameInput" placeholder="Enter name" maxlength="30">
-    <button id="saveBtn">Save</button>
-    <ul id="list"></ul>
-  </div>
+  <input id="nameInput" placeholder="Add / Search name" maxlength="30">
+  <button id="saveBtn">Save</button>
+  <ul id="list"></ul>
+</div>
 </main>
 
 <script>
@@ -125,12 +129,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const nameInput = document.getElementById("nameInput");
   const saveBtn = document.getElementById("saveBtn");
   const list = document.getElementById("list");
-  const searchInput = document.getElementById("searchInput");
 
-  // Real-time input validation: letters only
+  // Real-time input validation + live filtering
   nameInput.addEventListener("input", () => {
+    // Letters only + max 30
     nameInput.value = nameInput.value.replace(/[^A-Za-z]/g, "");
     if (nameInput.value.length > 30) nameInput.value = nameInput.value.slice(0, 30);
+
+    // Filter visible list items as you type
+    const filter = nameInput.value.toLowerCase();
+    Array.from(list.children).forEach(li => {
+      li.style.display = li.textContent.toLowerCase().includes(filter) ? "" : "none";
+    });
   });
 
   // Enter key support
@@ -142,6 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
   async function load() {
     const { data, error } = await supabase.from("names").select("*").order("name");
     if (error) return console.error(error);
+
     list.innerHTML = "";
     data.forEach((row, index) => {
       const li = document.createElement("li");
@@ -150,7 +161,6 @@ document.addEventListener("DOMContentLoaded", () => {
       li.style.transform = "translateY(-10px)";
       li.style.transition = "opacity 0.5s, transform 0.5s";
       list.appendChild(li);
-      // Fade-in sequentially
       setTimeout(() => {
         li.style.opacity = 1;
         li.style.transform = "translateY(0)";
@@ -160,53 +170,60 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Save new name
   async function save() {
-    let name = nameInput.value.trim();
-    if (!name) return;
+  let name = nameInput.value.trim();
+  if (!name) return;
 
-    // Case normalization
-    name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+  // Case normalization
+  name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
 
-    // Duplicate check
-    const existingNames = Array.from(list.children).map(li => li.textContent.toLowerCase());
-    if (existingNames.includes(name.toLowerCase())) {
-      alert("This name is already in the list.");
-      return;
-    }
-
-    const { error } = await supabase.from("names").insert([{ name }]);
-    if (error) {
-      console.error(error);
-      return;
-    }
-
-    nameInput.value = "";
-
-    // Fade-in new li
-    const li = document.createElement("li");
-    li.textContent = name;
-    li.style.opacity = 0;
-    li.style.transform = "translateY(-10px)";
-    li.style.transition = "opacity 0.5s, transform 0.5s";
-    list.appendChild(li);
-    requestAnimationFrame(() => {
-      li.style.opacity = 1;
-      li.style.transform = "translateY(0)";
-    });
+  // Duplicate check
+  const existingNames = Array.from(list.children).map(li => li.textContent.toLowerCase());
+  if (existingNames.includes(name.toLowerCase())) {
+    alert("This name is already in the list.");
+    return;
   }
 
-  saveBtn.addEventListener("click", save);
+  // Show temporary "loading" effect
+  saveBtn.disabled = true;
+  saveBtn.textContent = "Saving...";
+  nameInput.disabled = true;
 
-  // Search/filter
-  searchInput.addEventListener("input", () => {
-    const filter = searchInput.value.toLowerCase();
-    Array.from(list.children).forEach(li => {
-      li.style.display = li.textContent.toLowerCase().includes(filter) ? "" : "none";
-    });
-  });
+  // Simulate small delay (e.g., network + animation)
+  await new Promise(res => setTimeout(res, 500));
+
+  // Insert into Supabase
+  const { error } = await supabase.from("names").insert([{ name }]);
+  if (error) {
+    console.error(error);
+    saveBtn.disabled = false;
+    saveBtn.textContent = "Save";
+    nameInput.disabled = false;
+    return;
+  }
+
+  nameInput.value = "";
+
+  // Reload full list so the filter resets
+  await load();
+
+  // Reset input/button
+  saveBtn.disabled = false;
+  saveBtn.textContent = "Save";
+  nameInput.disabled = false;
+}
+
+  saveBtn.addEventListener("click", save);
 
   load();
 
 });
+
+const discordCopy = document.getElementById("discordCopy");
+  discordCopy.addEventListener("click", () => {
+    navigator.clipboard.writeText("laszi_").then(() => {
+      alert("Discord username copied to clipboard!");
+    });
+  });
 </script>
 </body>
 </html>
